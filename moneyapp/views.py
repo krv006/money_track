@@ -26,11 +26,9 @@ def all_category(request):
 
 def category_detail(request, sub_category_id):
     category = Category.objects.all()
-    all_sub_categories = Sub_category.objects.all()
     context = {
         'category': category,
         'sub_category_id': sub_category_id,
-        'all_sub_categories': all_sub_categories,
     }
     return render(request, 'category_detail.html', context)
 
