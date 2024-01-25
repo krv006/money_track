@@ -14,26 +14,23 @@ def add_new_consumption(request):
     return render(request, '')
 
 
+
+# ----------------------------Rokki's code ----------------------------
 def all_category(request):
-    categorys = Category.objects.all()
+    categories = Category.objects.all()
     context = {
-        'categorys' : categorys
+        'categories': categories
     }
-    
-    return render(request, 'all_category.html' , context)
+    return render(request, 'all_category.html', context)
 
-
-def category_detail(request , Sub_category):
-    category = Category.objects.filter( id = Sub_category)
-    #sub category ni ozi id ga
+def category_detail(request, sub_category_id):
+    category = get_object_or_404(Category, id=sub_category_id)
     context = {
-        'category' : category
+        'category': category
     }
-    
-    
-    return render(request,'category_detail.html' , context)
+    return render(request, 'category_detail.html', context)
 
-
+# --------------------------------------------------------------
 
 def sub_category(request):
     
