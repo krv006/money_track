@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from .models import Category,Consumption,Sub_category,Card
 # Create your views here.
 
@@ -24,7 +25,7 @@ def all_category(request):
     return render(request, 'all_category.html', context)
 
 def category_detail(request, sub_category_id):
-    category = get_object_or_404(Category, id=sub_category_id)
+    category = Category.objects.filter( sub_category = sub_category_id)
     context = {
         'category': category
     }
