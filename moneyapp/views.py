@@ -25,9 +25,12 @@ def all_category(request):
     return render(request, 'all_category.html', context)
 
 def category_detail(request, sub_category_id):
-    category = Category.objects.filter( sub_category = sub_category_id)
+    category = Category.objects.all()
+    all_sub_categories = Sub_category.objects.all()
     context = {
-        'category': category
+        'category': category,
+        'sub_category_id': sub_category_id,
+        'all_sub_categories': all_sub_categories,
     }
     return render(request, 'category_detail.html', context)
 
