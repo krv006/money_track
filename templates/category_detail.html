@@ -15,11 +15,15 @@
 
 
 {% for i in category %}
-test
-{% if i.sub_category == sub_category_id  %}
-if test
-<a href="#"><h3>{{i.name}}</h3></a>
+
+{% if i.id == sub_category_id  %}
+
+{% for sub_cats in i.sub_category.all  %}
+
+<a href="#"><h3>{{sub_cats.name}}</h3></a>
+{% endfor %}
 {% endif %}
+
 {% endfor %}    
     
     
