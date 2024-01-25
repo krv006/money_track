@@ -16,7 +16,6 @@ def add_new_consumption(request):
 
 
 
-# ----------------------------Rokki's code ----------------------------
 def all_category(request):
     categories = Category.objects.all()
     context = {
@@ -32,7 +31,6 @@ def category_detail(request, sub_category_id):
     }
     return render(request, 'category_detail.html', context)
 
-# --------------------------------------------------------------
 
 def sub_category(request):
     
