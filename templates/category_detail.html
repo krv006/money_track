@@ -12,7 +12,10 @@
 
 <body>
   
-<h1></h1>
+akjcba
+{% for i in categorys %}
+<a href="{% url 'category_detail' i.id %}"><h3>{{i.name}}</h3></a>
+{% endfor %}    
     
     
  

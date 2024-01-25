@@ -6,7 +6,7 @@ urlpatterns = [
     path('', index , ),
     path('' , all_category , ),
     path('' , add_new_consumption, ),
-    path('' , category_detail ,  ),
+    path('category/<int:Sub_category>' , category_detail ,  name="category_detail" ),
     path('' , sub_category , ),
 
 ]
