@@ -10,9 +10,22 @@ def index(request):
 
 
 def add_new_consumption(request):
-    # post  
+    name = Consumption.objects.filter()
+    info = Consumption.objects.all()
+    cost = Consumption.objects.all()
+    sub_category = Consumption.objects.all()
+    time = Consumption.objects.all()
+    status = Consumption.objects.all()
+    context = {
+        'name' : name ,
+        'info' : info ,
+        'cost' : cost ,
+        'sub_xategory' : sub_category ,      
+        'time' : time ,
+        'status' : status , 
+    }   
     
-    return render(request, '')
+    return render(request, 'add_new_consumption', context)
 
 
 
@@ -33,7 +46,8 @@ def category_detail(request, sub_category_id):
 
 
 def sub_category(request):
-    
-    
-    
-    return render(request, '')
+    name = Sub_category.objects.all()
+    context = {
+        'name' : name
+    }
+    return render(request, 'sub_category.html' , context)

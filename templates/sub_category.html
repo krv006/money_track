@@ -13,9 +13,9 @@
 </head>
 
 <body>
-  
-{% for i in %}
-
+sub category ni all_category ga ulash kk 
+{% for i in name %} 
+<a href="{% url 'add_new_consumption' i.id %}"><h3>{{i.name}}</h3></a>
 {% endfor %}    
     
  
