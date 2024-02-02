@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.shortcuts import get_object_or_404
+
 from .models import Category,Consumption,Sub_category,Card
+from .forms import ConsumptionForm
 # Create your views here.
 
 def index(request):
@@ -10,22 +12,18 @@ def index(request):
 
 
 def add_new_consumption(request):
-    name = Consumption.objects.filter()
-    info = Consumption.objects.all()
-    cost = Consumption.objects.all()
-    sub_category = Consumption.objects.all()
-    time = Consumption.objects.all()
-    status = Consumption.objects.all()
-    context = {
-        'name' : name ,
-        'info' : info ,
-        'cost' : cost ,
-        'sub_xategory' : sub_category ,      
-        'time' : time ,
-        'status' : status , 
-    }   
+    if request.method == 'POST':
+        form = ConsumptionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = ConsumptionForm()
     
-    return render(request, 'add_new_consumption', context)
+    context ={
+        'form':form,
+    }
+    return render(request, 'add_new_consumption.html', context)
 
 
 
@@ -46,8 +44,17 @@ def category_detail(request, sub_category_id):
 
 
 def sub_category(request):
-    name = Sub_category.objects.all()
+    sub_categoris = Sub_category.objects.all()
     context = {
-        'name' : name
+        'sub_categoris' : sub_categoris
     }
     return render(request, 'sub_category.html' , context)
+
+def sub_category_detail(request , sub_cat_id ):
+    sub_category = Sub_category.objects.get(id = sub_cat_id)
+    consumptions = Consumption.objects.all()
+    context = {
+        'sub_category' : sub_category,
+        'cosumptions' : consumptions
+    }
+    return render(request, 'sub_category_detail.html', context )

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>DETAILs</title>
+
+
+</head>
+
+<body>
+
+    TEST
+
+
+    {% for consumption in sub_category.consumption_set.all %}
+            {{ consumption.name }}
+    {% endfor%}
+{% comment %} 1 - idea
+forda sub categoyni name boyicha aylanib uni categoyni id sni ifda tenglab
+kein sumga yigib olish
+2 - idea 
+ichma ich forda ishlash 
+    1 -  for da sub_category boyicha aylanib unga id sini berib yuborib 
+if da unga tenlab sum ichiga yigib ketsa boladi {% endcomment %}
+</body>
+</html> 

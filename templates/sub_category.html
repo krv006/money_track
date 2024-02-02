@@ -13,12 +13,15 @@
 </head>
 
 <body>
-sub category ni all_category ga ulash kk 
-{% for i in name %} 
-<a href="{% url 'add_new_consumption' i.id %}"><h3>{{i.name}}</h3></a>
-{% endfor %}    
-    
- 
+{%for sub_category in sub_categoris %}
+
+<a href="#"><h3>{{sub_category.name}} --- {{ sub_category.id }}</h3></a>
+
+{% endfor %}
+
+{% comment %} sub_category ni detail ga ulash 
+sub_category da xamma category korinishi
+detailda sum qilib olish hamma consumption lardi {% endcomment %}
 </body>
 
 </html> 

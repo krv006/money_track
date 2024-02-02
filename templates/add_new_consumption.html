@@ -11,11 +11,15 @@
 </head>
 
 <body>
-  
-{% comment %} {% for i in name %}
-{{}}
-{% endfor %}     {% endcomment %}
+  <h2>consumption</h2>
+
+  <form method="post" action="{% url 'add_new_consumption' %}">
+    {% csrf_token %}
     
+    {{ form.as_p }}
+    
+    <button type="submit">Submit</button>
+  </form>
  
 </body>
 
