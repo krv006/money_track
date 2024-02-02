@@ -16,11 +16,11 @@
 
     {% for i in category %}
 
-    {% if i.id == sub_category_id  %}
+    {% if i.id == category_id  %}
     
-    {% for sub_cats in i.sub_category.all  %}
+    {% for cats in i.sub_category.all  %}
     
-    <a href="#"><h3>{{sub_cats.name}}</h3></a>
+    <a href="#"><h3>{{cats.name}}</h3></a>
     
     {% endfor %}
 

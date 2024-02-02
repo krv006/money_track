@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 
 from .models import Category,Consumption,Sub_category,Card
 from .forms import ConsumptionForm
+from django.db.models import Sum
+
 # Create your views here.
 
 def index(request):
@@ -34,11 +36,11 @@ def all_category(request):
     }
     return render(request, 'all_category.html', context)
 
-def category_detail(request, sub_category_id):
+def category_detail(request, category_id):
     category = Category.objects.all()
     context = {
         'category': category,
-        'sub_category_id': sub_category_id,
+        'category_id': category_id,
     }
     return render(request, 'category_detail.html', context)
 
@@ -50,11 +52,17 @@ def sub_category(request):
     }
     return render(request, 'sub_category.html' , context)
 
-def sub_category_detail(request , sub_cat_id ):
-    sub_category = Sub_category.objects.get(id = sub_cat_id)
-    consumptions = Consumption.objects.all()
+
+
+def sub_category_detail(request, sub_category_id):
+    sub_category = Sub_category.objects.get(id=sub_category_id)
+    consumption = Consumption.objects.filter(sub_category=sub_category)
+    total_cost = Consumption.objects.filter(sub_category=sub_category_id).aggregate(Sum('cost'))['cost__sum'] or 0
+
     context = {
-        'sub_category' : sub_category,
-        'cosumptions' : consumptions
+        'sub_category': sub_category,
+        'consumption': consumption,
+        'total_cost': total_cost,
     }
-    return render(request, 'sub_category_detail.html', context )
+
+    return render(request, 'sub_category_detail.html', context)

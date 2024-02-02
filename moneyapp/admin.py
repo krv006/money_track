@@ -7,8 +7,13 @@ from .models import Category
 
 # Register your models here.
 
-admin.site.register(Sub_category)
+# admin.site.register(Sub_category)
 admin.site.register(Card)
 admin.site.register(Consumption)
 admin.site.register(Category)
 # admin.site.register(Plastic_card)
+
+
+@admin.register(Sub_category)
+class Sub_categoryAdmin(admin.ModelAdmin):
+    list_display = ('name',"id")

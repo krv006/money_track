@@ -1,31 +1,31 @@
+
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>DETAILs</title>
-
-
+    <title>WEB SAHIFA</title>
 </head>
 
 <body>
 
-    TEST
+<h1>Sub Category: {{ sub_category.name }}</h1>
+
+{% for i in consumption %}
+    <div>
+      <h2>Name: {{ i.name }}</h2>
+      <p>Info: {{ i.info }}</p>
+      <p>Cost: {{ i.cost }}</p>
+      <p>Time: {{ i.time }}</p>
+    </div>
+{% endfor %}
+<h3>Total Cost for <span style="background-color:green;">{{ sub_category.name }}</span>: {{ total_cost }}</h3>
 
 
-    {% for consumption in sub_category.consumption_set.all %}
-            {{ consumption.name }}
-    {% endfor%}
-{% comment %} 1 - idea
-forda sub categoyni name boyicha aylanib uni categoyni id sni ifda tenglab
-kein sumga yigib olish
-2 - idea 
-ichma ich forda ishlash 
-    1 -  for da sub_category boyicha aylanib unga id sini berib yuborib 
-if da unga tenlab sum ichiga yigib ketsa boladi {% endcomment %}
 </body>
-</html> 
+
+</html>
+
