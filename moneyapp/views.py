@@ -8,9 +8,12 @@ from django.db.models import Sum
 # Create your views here.
 
 def index(request):
+    name = Category.objects.all()
+    context = {
+        'name' : name
+    }
     
-    
-    return render(request, 'index_html')
+    return render(request, 'index.html',context)
 
 
 def add_new_consumption(request):
