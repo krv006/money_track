@@ -17,13 +17,27 @@
   
 <h1>All categorys</h1>
 </br>
-<h3>all_category bolimi!</h3>
-{% for i in name %}
-<a href= "{% url 'all_category' %}"> 
-    {{i.name}} </a>
+<h3><a href= "{% url 'all_category' %}">all_category bolimi!</a></h3>
+
 </br>
-{% endfor %}
-    
+
+<h1>Add_new_consumption bolimi</h1>
+</br>
+<h3><a href= "{% url 'add_new_consumption' %}">add_new_consumption bolimi!</a></h3>
+
+</br>
+
+<h1>Sub_category bolimi</h1>
+</br>
+<h3><a href= "{% url 'sub_category' %}">sub_category bolimi!</a></h3>
+
+</br>
+
+{% comment %} Shamshoddan sorash {% endcomment %}
+{% comment %} <h1>Sub_category_detail bolimi</h1>
+</br>
+<h3><a href= "{% url 'sub_category_detail' %}">sub_category_detail bolimi!</a></h3> {% endcomment %}
+
 
 </body>
 
