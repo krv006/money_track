@@ -15,7 +15,7 @@
 <body>
 {%for sub_category in sub_categoris %}
 
-<a href="#"><h3>{{sub_category.name}} --- {{ sub_category.id }}</h3></a>
+<a href="{% url 'sub_category_detail' sub_category.id %}"><h3>{{sub_category.name}} --- {{ sub_category.id }}</h3></a>
 
 {% endfor %}
 
