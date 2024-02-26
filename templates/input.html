@@ -11,22 +11,22 @@
     <h2>Today's Expenses</h2>
     
         {% for expense in daily_consumption %}
-            <li>{{ expense.description }} - ${{ expense.cost }}</li>
+            <li>{{ expense.description }} - {{ expense.cost }}</li>
         {% empty %}
             <li>No expenses for today</li>
         {% endfor %}
     
-    <p>Total Today's Cost: ${{ total_daily_cost }}</p>
+    <p>Total Today's Cost: {{ total_daily_cost }}</p>
 
     <h2>Monthly Expenses</h2>
     
         {% for expense in monthly_consumption %}
-            <li>{{ expense.description }} - ${{ expense.cost }}</li>
+            <li>{{ expense.description }} - {{ expense.cost }}</li>
         {% empty %}
             <li>No expenses for this month</li>
         {% endfor %}
     
-    <p>Total Monthly Cost: ${{ total_monthly_cost }}</p>
+    <p>Total Monthly Cost: {{ total_monthly_cost }}</p>
 
 </body>
 </html>
