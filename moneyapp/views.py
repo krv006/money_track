@@ -1,12 +1,12 @@
 from django.shortcuts import render,redirect
 from django.shortcuts import get_object_or_404
-
 from .models import Category,Consumption,Sub_category,Card
 from .forms import ConsumptionForm
 from django.db.models import Sum
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login, authenticate
+from datetime import datetime, timedelta
 
 # Create your views here.
 
@@ -14,8 +14,7 @@ def index(request):
     name = Category.objects.all()
     context = {
         'name' : name
-    }
-    
+    }    
     return render(request, 'index.html',context)
 
 
@@ -73,6 +72,23 @@ def sub_category_detail(request, sub_category_id):
 
     return render(request, 'sub_category_detail.html', context)
 
+def input(request):
+    today = datetime.now().date()
+    one_moth = today - timedelta(days = 30)
+    one_month_ago = today - timedelta(days=30)
+    # oylik ish reja
+    daily_consumption = Consumption.objects.filter(date=today)
+    monthly_consumption = Consumption.objects.filter(date__range=[one_month_ago, today])
+    total_monthly_cost = monthly_consumption.aggregate(Sum('cost'))['cost__sum'] or 0
+    context = {
+        'one_moth' : one_moth,
+        'total_monthly_cost' : total_monthly_cost,
+        'daily_consumption': daily_consumption,
+        'monthly_consumption' : monthly_consumption,
+        'one_month_ago' : one_month_ago,
+    }
+    return render(request, 'input.html', context )
+
 
 def register(request):
     if request.method == 'POST':
@@ -98,3 +114,8 @@ def login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
+
+#########################################################################
+
+with open('kirim_chiqim.txt', 'w') as file:
+    file.write(f'{sub_category_detail}, {input}')

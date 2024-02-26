@@ -9,8 +9,9 @@ urlpatterns = [
     path('category/<int:category_id>/', category_detail, name='category_detail'),
     path('sub_category/', sub_category, name='sub_category'),
     path('sub_category_detail/<int:sub_category_id>', sub_category_detail, name='sub_category_detail'),
-    
     path('register/', register, name='register'),
     path('login/', login, name='login'),
+    path('input/', input, name='input'),
+
 
 ]
