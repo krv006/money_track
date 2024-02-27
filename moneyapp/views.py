@@ -75,8 +75,8 @@ def sub_category_detail(request, sub_category_id):
     return render(request, 'sub_category_detail.html', context)
 
 def input(request, sub_categories_id):
-    sub_categories = Sub_category.objects.get(id = sub_categories_id)
     today = datetime.now().date()
+    sub_categories = Sub_category.objects.get(id = sub_categories_id)
     one_month_ago = today - timedelta(days=30)
     # oylik ish reja
     monthly_consumption = Consumption.objects.filter(sub_categories = sub_categories, date__range=[one_month_ago, today])
