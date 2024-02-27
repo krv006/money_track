@@ -60,7 +60,9 @@ def sub_category(request):
 
 
 def sub_category_detail(request, sub_category_id):
-    sub_category = Sub_category.objects.get(id=sub_category_id)
+    today = datetime.now().date()
+
+    sub_category = Sub_category.objects.get(id=sub_category_id, date = today)
     consumption = Consumption.objects.filter(sub_category=sub_category)
     total_cost = Consumption.objects.filter(sub_category=sub_category_id).aggregate(Sum('cost'))['cost__sum'] or 0
 
@@ -72,20 +74,17 @@ def sub_category_detail(request, sub_category_id):
 
     return render(request, 'sub_category_detail.html', context)
 
-def input(request):
+def input(request, sub_categories_id):
+    sub_categories = Sub_category.objects.get(id = sub_categories_id)
     today = datetime.now().date()
-    one_moth = today - timedelta(days = 30)
     one_month_ago = today - timedelta(days=30)
     # oylik ish reja
-    daily_consumption = Consumption.objects.filter(date=today)
-    monthly_consumption = Consumption.objects.filter(date__range=[one_month_ago, today])
+    monthly_consumption = Consumption.objects.filter(sub_categories = sub_categories, date__range=[one_month_ago, today])
     total_monthly_cost = monthly_consumption.aggregate(Sum('cost'))['cost__sum'] or 0
     context = {
-        'one_moth' : one_moth,
+        'sub_categories' : sub_categories,
         'total_monthly_cost' : total_monthly_cost,
-        'daily_consumption': daily_consumption,
         'monthly_consumption' : monthly_consumption,
-        'one_month_ago' : one_month_ago,
     }
     return render(request, 'input.html', context )
 
@@ -117,5 +116,5 @@ def login(request):
 
 #########################################################################
 
-with open('kirim_chiqim.txt', 'w') as file:
-    file.write(f'{sub_category_detail}, {input}')
+# with open('kirim_chiqim.txt', 'w') as file:
+#     file.write(f'{sub_category_detail}, {input}')
