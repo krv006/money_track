@@ -1,1 +1,1 @@
-<function sub_category_detail at 0x7f8a0e462cb0>, <function input at 0x7f8a0e462d40>
+<function sub_category_detail at 0x7f2f353048b0>, <function input at 0x7f2f35304940>
