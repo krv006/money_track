@@ -34,9 +34,7 @@ class Consumption(models.Model):
     sub_category = models.ForeignKey(Sub_category,on_delete = models.CASCADE)
     time = models.TimeField(auto_now_add = False, null=True)
     status = models.IntegerField(choices=CONSUPTION_CHOISES_FIELD, default=1)
-    
-    
-    
+    date = models.DateField( auto_now_add = True )
     def __str__(self):
         return self.name
 

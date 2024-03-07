@@ -18,6 +18,14 @@ def index(request):
     return render(request, 'index.html',context)
 
 
+def card_detail(request):
+    card_name = Card.objects.all()
+    context = {
+        'card_name' : card_name
+    }
+    return render( request, '', context )
+
+
 def add_new_consumption(request):
     if request.method == 'POST':
         form = ConsumptionForm(request.POST)
@@ -62,8 +70,8 @@ def sub_category(request):
 def sub_category_detail(request, sub_category_id):
     today = datetime.now().date()
 
-    sub_category = Sub_category.objects.get(id=sub_category_id, date = today)
-    consumption = Consumption.objects.filter(sub_category=sub_category)
+    sub_category = Sub_category.objects.get(id=sub_category_id)
+    consumption = Consumption.objects.filter(sub_category=sub_category, date = today )
     total_cost = Consumption.objects.filter(sub_category=sub_category_id).aggregate(Sum('cost'))['cost__sum'] or 0
 
     context = {
@@ -74,9 +82,9 @@ def sub_category_detail(request, sub_category_id):
 
     return render(request, 'sub_category_detail.html', context)
 
-def input(request, sub_categories_id):
+def input(request, ):
     today = datetime.now().date()
-    sub_categories = Sub_category.objects.get(id = sub_categories_id)
+    sub_categories = Sub_category.objects.all()
     one_month_ago = today - timedelta(days=30)
     # oylik ish reja
     monthly_consumption = Consumption.objects.filter(sub_categories = sub_categories, date__range=[one_month_ago, today])
