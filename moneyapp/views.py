@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login, authenticate
 from datetime import datetime, timedelta
+from .permissions import IsAuth
 
 # Create your views here.
 
@@ -14,7 +15,7 @@ def index(request):
     name = Category.objects.all()
     context = {
         'name' : name
-    }    
+    }  
     return render(request, 'index.html',context)
 
 

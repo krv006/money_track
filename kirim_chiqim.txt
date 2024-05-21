@@ -1,1 +1,104 @@
 <function sub_category_detail at 0x7fd634828ee0>, <function input at 0x7fd634828f70>
+#task_1
+
+import requests
+import csv
+import json
+
+# response = requests.get()
+url = requests.get('https://dummyjson.com/products').json()
+with open('data.json', 'w') as file_json:
+    json.dump(products, file_json)
+
+
+with open('new_csv.csv', 'w') as f_csv:
+    writer = csv.DictWriter(f_csv, fieldnames=products[0].keys())
+    writer.writeheader()
+    writer.writerows(products)
+
+
+
+#------------------------------------------------------------------------------------
+
+# task_2
+
+# import requests
+# import json
+# 
+# response = requests.get("https://dummyjson.com/products")
+# products = response.json()
+# 
+# filename = "products.json"
+# 
+# with open(filename, 'w', encoding='utf-8') as file:
+#     json.dump(products, file, ensure_ascii=False, indent=4)
+# 
+# print(f"{filename} fayli muvaffaqiyatli yaratildi.")
+
+
+#----------------------------------------------------------------------------------------
+#task_3
+
+# import requests
+# import json
+#
+# response = requests.get("https://dummyjson.com/products")
+# products = response.json()
+#
+# result_products = [product for product in products if product.get('title', '').count('m') >= 5]
+#
+# filename = "result.json"
+#
+# with open(filename, 'w', encoding='utf-8') as file:
+#     json.dump(result_products, file, ensure_ascii=False, indent=4)
+#
+# print(f"{filename} fayli muvaffaqiyatli yaratildi.")
+
+
+
+#---------------------------------------------------------------------------------------
+#task_4
+
+# import requests
+# import csv
+#
+# response = requests.get("https://dummyjson.com/products")
+# products = response.json()
+#
+# sorted_products = sorted(products, key=lambda x: len(x['description']))
+#
+# filename = "products.csv"
+#
+# with open(filename, 'w', newline='', encoding='utf-8') as file:
+#     writer = csv.writer(file)
+#     writer.writerow(["id", "title", "description"])
+#     for product in sorted_products:
+#         writer.writerow([product.get("id", ""),
+#                          product.get("title", ""),
+#                          product.get("description", "")])
+#
+# print(f"{filename} fayli muvaffaqiyatli yaratildi.")
+
+
+#-------------------------------------------------------------------------------------------------
+#task_5
+
+# import requests
+# import csv
+#
+# response = requests.get("https://dummyjson.com/products")
+# products = response.json()
+#
+# sorted_products = sorted(products, key=lambda x: x.get('stock', 0), reverse=True)
+#
+# filename = "products.csv"
+#
+# with open(filename, 'w', newline='', encoding='utf-8') as file:
+#     writer = csv.writer(file)
+#     writer.writerow(["id", "title", "stock"])
+#     for product in sorted_products:
+#         writer.writerow([product.get("id", ""),
+#                          product.get("title", ""),
+#                          product.get("stock", "")])
+#
+# print(f"{filename} fayli muvaffaqiyatli yaratildi.")
